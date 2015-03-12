@@ -2,7 +2,13 @@ package com.yggdrasil.account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
+import java.util.Formatter;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -60,14 +66,45 @@ public class Signon extends HttpServlet {
 		}
 		
 		// set cookies
-		Cookie cookie = new Cookie("session", "abcd");
+		Cookie cookie = new Cookie("session", generateSessionId(request.getParameter("username")));
 		cookie.setMaxAge(60*1);
 		response.addCookie(cookie);
 		writer.println("a cookie created");
 		
 		cookie=new Cookie("timestamp", new java.util.Date() + "");
 		response.addCookie(cookie);
+		
+		cookie=new Cookie("user", request.getParameter("username"));
+		response.addCookie(cookie);
 		writer.close();
 	}
+	
+	private String generateSessionId(String key) {
+		String sessionId = null;
+		try {
+			sessionId = calculateRFC2104HMAC(new java.util.Date() + key, "DEADBEEF");
+		} catch (Exception e) {
+			System.out.println("generateSessionId() failed");
+		}
+		return(sessionId);
+	}
 
+	private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
+	
+	private static String toHexString(byte[] bytes) {
+		Formatter formatter = new Formatter(); 
+
+		for (byte b : bytes) {
+			formatter.format("%02x", b);
+		}
+
+		return(formatter.toString());
+	}
+
+	private String calculateRFC2104HMAC(String data, String key) throws SignatureException, NoSuchAlgorithmException, InvalidKeyException {
+		SecretKeySpec signingKey = new SecretKeySpec(key.getBytes(), HMAC_SHA1_ALGORITHM);
+		Mac mac = Mac.getInstance(HMAC_SHA1_ALGORITHM);
+		mac.init(signingKey);
+		return(toHexString(mac.doFinal(data.getBytes())));
+	}
 }
