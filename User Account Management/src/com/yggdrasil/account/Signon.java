@@ -35,13 +35,6 @@ public class Signon extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		System.out.println("doPost()");
-//		PrintWriter writer = response.getWriter();
-//		response.setContentType("text/html");
-//		writer.println("<h1>doPost<h1>");
-//		writer.println("<h2>Date: " + new java.util.Date() + " <h2>");
-//		writer.println("<h3>User Name: " + request.getParameter("username") + " </h3>");
-//		writer.println("<h3>Password: " + request.getParameter("password") + " </h3>");
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -82,7 +75,7 @@ public class Signon extends HttpServlet {
 			return(false);
 		}
 		
-		// retrive password hash from LDAP
+		// retrieve password hash from LDAP
 		
 		return(true);
 	}
