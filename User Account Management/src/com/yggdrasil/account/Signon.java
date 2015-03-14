@@ -32,57 +32,65 @@ public class Signon extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet()");
-		PrintWriter writer = response.getWriter();
-		response.setContentType("text/html");
-		writer.println("<h1>doGet<h1>");
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost()");
-		PrintWriter writer = response.getWriter();
-		response.setContentType("text/html");
-		writer.println("<h1>doPost<h1>");
-		writer.println("<h2>Date: " + new java.util.Date() + " <h2>");
-		writer.println("<h3>User Name: " + request.getParameter("username") + " </h3>");
-		writer.println("<h3>Password: " + request.getParameter("password") + " </h3>");
+//		System.out.println("doPost()");
+//		PrintWriter writer = response.getWriter();
+//		response.setContentType("text/html");
+//		writer.println("<h1>doPost<h1>");
+//		writer.println("<h2>Date: " + new java.util.Date() + " <h2>");
+//		writer.println("<h3>User Name: " + request.getParameter("username") + " </h3>");
+//		writer.println("<h3>Password: " + request.getParameter("password") + " </h3>");
 		
-		// read cookies
-		Cookie[] requestCookies = request.getCookies();
-		for(Cookie c : requestCookies) {
-			writer.write("<h3>----------------------------------------------</h3>");
-			writer.write("<h3>Cookie Name:" + c.getName() + "</h3>");
-			writer.write("<h3>Cookie Value:" + c.getValue() + "</h3>");
-			writer.write("<h3>Cookie Comment:" + c.getComment() + "</h3>");
-			writer.write("<h3>Cookie Domain:" + c.getMaxAge() + "</h3>");
-			writer.write("<h3>Cookie Path:" + c.getPath() + "</h3>");
-			writer.write("<h3>Cookie Version:" + c.getVersion() + "</h3>");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		if(!verify(username, password)) {
+			response.sendRedirect("invalidlogin.jsp");
 		}
 		
 		// set cookies
 		Cookie cookie = new Cookie("session", generateSessionId(request.getParameter("username")));
 		cookie.setMaxAge(60*1);
 		response.addCookie(cookie);
-		writer.println("a cookie created");
 		
-		cookie=new Cookie("timestamp", new java.util.Date() + "");
+		cookie = new Cookie("timestamp", new java.util.Date().toString());
 		response.addCookie(cookie);
 		
-		cookie=new Cookie("user", request.getParameter("username"));
+		cookie = new Cookie("user", request.getParameter("username"));
 		response.addCookie(cookie);
-		writer.close();
+		
+		response.sendRedirect("successlogin.jsp");
+	}
+	
+	private boolean verify(String username, String password) {
+		if(username == null || password == null) {
+			return(false);
+		} 
+		
+		if(password.length() < 6) {
+			return(false);
+		}
+		
+		String passwordHash = null;
+		
+		try {
+			passwordHash = calculateRFC2104HMAC(password, "marktwain");
+		} catch(Exception e) {
+			System.out.println("Password hashing error!");
+			return(false);
+		}
+		
+		// retrive password hash from LDAP
+		
+		return(true);
 	}
 	
 	private String generateSessionId(String key) {
 		String sessionId = null;
 		try {
-			sessionId = calculateRFC2104HMAC(new java.util.Date() + key, "DEADBEEF");
+			sessionId = calculateRFC2104HMAC(new java.util.Date() + key, "DAAADF9CE77AF565D03753A2D2");
 		} catch (Exception e) {
 			System.out.println("generateSessionId() failed");
 		}
