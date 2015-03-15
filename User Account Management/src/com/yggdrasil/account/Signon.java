@@ -41,20 +41,20 @@ public class Signon extends HttpServlet {
 		
 		if(!verify(username, password)) {
 			response.sendRedirect("invalidlogin.jsp");
+		} else {			
+			// set cookies
+			Cookie cookie = new Cookie("session", generateSessionId(request.getParameter("username")));
+			cookie.setMaxAge(60*1);
+			response.addCookie(cookie);
+			
+			cookie = new Cookie("timestamp", new java.util.Date().toString());
+			response.addCookie(cookie);
+			
+			cookie = new Cookie("user", request.getParameter("username"));
+			response.addCookie(cookie);
+			
+			response.sendRedirect("successlogin.jsp");
 		}
-		
-		// set cookies
-		Cookie cookie = new Cookie("session", generateSessionId(request.getParameter("username")));
-		cookie.setMaxAge(60*1);
-		response.addCookie(cookie);
-		
-		cookie = new Cookie("timestamp", new java.util.Date().toString());
-		response.addCookie(cookie);
-		
-		cookie = new Cookie("user", request.getParameter("username"));
-		response.addCookie(cookie);
-		
-		response.sendRedirect("successlogin.jsp");
 	}
 	
 	private boolean verify(String username, String password) {
