@@ -1,14 +1,22 @@
 package com.yggdrasil.account;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.util.Formatter;
+import java.util.Hashtable;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.naming.Context;
+import javax.naming.NamingEnumeration;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
+import javax.naming.directory.SearchControls;
+import javax.naming.directory.SearchResult;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -39,18 +47,20 @@ public class Signon extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		// request.getSession(false);
+		
 		if(!verify(username, password)) {
 			response.sendRedirect("invalidlogin.jsp");
-		} else {			
+		} else {
 			// set cookies
-			Cookie cookie = new Cookie("session", generateSessionId(request.getParameter("username")));
+			Cookie cookie = new Cookie("s", generateSessionId(request.getParameter("username")));
 			cookie.setMaxAge(60*1);
 			response.addCookie(cookie);
 			
-			cookie = new Cookie("timestamp", new java.util.Date().toString());
+			cookie = new Cookie("ts", new java.util.Date().toString());
 			response.addCookie(cookie);
 			
-			cookie = new Cookie("user", request.getParameter("username"));
+			cookie = new Cookie("u", request.getParameter("username"));
 			response.addCookie(cookie);
 			
 			response.sendRedirect("successlogin.jsp");
@@ -62,20 +72,44 @@ public class Signon extends HttpServlet {
 			return(false);
 		} 
 		
-		if(password.length() < 6) {
-			return(false);
-		}
+//		if(password.length() < 6) {
+//			return(false);
+//		}
 		
-		String passwordHash = null;
+		Hashtable<String, String> env = new Hashtable<String, String>();
+		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		env.put(Context.PROVIDER_URL, "ldap://192.168.10.101:389");
+		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.SECURITY_PRINCIPAL, "uid="+ username + ",ou=user,dc=yggdrasil,dc=com");
+		env.put(Context.SECURITY_CREDENTIALS, password);
+		
+		DirContext dc = null;
 		
 		try {
-			passwordHash = calculateRFC2104HMAC(password, "marktwain");
+			// This line below show be enough for verifying against LDAP
+			dc = new InitialDirContext(env);
+			
+			// Bolows are extra
+			SearchControls sc = new SearchControls();
+			sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
+			NamingEnumeration results = dc.search("dc=yggdrasil,dc=com", "uid=" + username, sc);
+			while(results.hasMore()) {
+				SearchResult sr = (SearchResult) results.next();
+				Attributes attributes = sr.getAttributes();
+				Attribute mail = attributes.get("mail");
+				System.out.println("user email = " + mail);
+			}
+			
+		} catch(javax.naming.CommunicationException e) {
+			System.out.println(e.getMessage());
+			return(false);
+		} catch(javax.naming.AuthenticationException e) {
+			System.out.println(e.getMessage());
+			return(false);
 		} catch(Exception e) {
-			System.out.println("Password hashing error!");
+			System.out.println(e.getMessage());
 			return(false);
 		}
-		
-		// retrieve password hash from LDAP
 		
 		return(true);
 	}
