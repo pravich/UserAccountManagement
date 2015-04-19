@@ -36,12 +36,19 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("Register.doPost()");
-		System.out.println("username=" + request.getParameter("username"));
-		System.out.println("password1=" + request.getParameter("password1"));
-		System.out.println("password2=" + request.getParameter("password2"));
-		System.out.println("firstname=" + request.getParameter("firstname"));
-		System.out.println("lastname=" + request.getParameter("lastname"));
-		System.out.println("email=" + request.getParameter("email"));
+		String username  = request.getParameter("username");
+		String password1 = request.getParameter("password1");
+		String password2 = request.getParameter("password2");
+		String firstname = request.getParameter("firstname");
+		String lastname  = request.getParameter("lastname");
+		String email     = request.getParameter("email");
+		
+		System.out.println("username=" + username);
+		System.out.println("password1=" + password1);
+		System.out.println("password2=" + password2);
+		System.out.println("firstname=" + firstname);
+		System.out.println("lastname=" + lastname);
+		System.out.println("email=" + email);
 		
 		Hashtable env = new Hashtable();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -50,28 +57,23 @@ public class Register extends HttpServlet {
 		env.put(Context.SECURITY_PRINCIPAL, "uid=admin,ou=staff,dc=yggdrasil,dc=com");
 		env.put(Context.SECURITY_CREDENTIALS, "admin");
 		
-		DirContext dc = null;
-		
 		try {
+			DirContext dc = null;
 			dc = new InitialDirContext(env);
 			
-			BasicAttribute basicAttribute = new BasicAttribute("objectClass");
-			basicAttribute.add("person");
-			basicAttribute.add("user");
-			
-			Attributes userAttributes = new BasicAttributes();
-			userAttributes.put(basicAttribute);
-			
-			userAttributes.put("givenName", request.getParameter("firstname"));
-			userAttributes.put("sn", request.getParameter("lastname"));
-			userAttributes.put("cn", request.getParameter("username"));
-			userAttributes.put("uid", request.getParameter("username"));
-			userAttributes.put("mail", request.getParameter("email"));
-			userAttributes.put("userpassword", request.getParameter("password1"));
-			String name = "uid=" + request.getParameter("username") + ",ou=user,dc=yggdrasil,dc=com";
-			
-			InitialDirContext iniDirContext = (InitialDirContext) dc; 
-			iniDirContext.bind(name,  dc, userAttributes);
+			Attributes attrs = new BasicAttributes(true);
+			attrs.put(new BasicAttribute("uid", username));
+			attrs.put(new BasicAttribute("cn", username));
+			attrs.put(new BasicAttribute("street", "na"));
+			attrs.put(new BasicAttribute("sn", lastname));
+			attrs.put(new BasicAttribute("userpassword", password1));
+			attrs.put(new BasicAttribute("objectclass", "top"));
+			attrs.put(new BasicAttribute("objectclass", "person"));
+			attrs.put(new BasicAttribute("objectclass", "organizationalPerson"));
+			attrs.put(new BasicAttribute("objectclass", "inetorgperson"));
+			String dn = "uid=" + username + ",ou=user,dc=yggdrasil,dc=com";
+			InitialDirContext iniDirContext = (InitialDirContext)dc;
+			iniDirContext.bind(dn, dc, attrs);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
