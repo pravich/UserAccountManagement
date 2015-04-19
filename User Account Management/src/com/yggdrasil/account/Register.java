@@ -76,7 +76,10 @@ public class Register extends HttpServlet {
 			iniDirContext.bind(dn, dc, attrs);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
+			response.sendRedirect("failregister.jsp");
 		}
+		
+		response.sendRedirect("successregister.jsp");
 	}
 
 }
