@@ -50,36 +50,19 @@ public class Register extends HttpServlet {
 		System.out.println("lastname=" + lastname);
 		System.out.println("email=" + email);
 		
-		Hashtable env = new Hashtable();
-		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-		env.put(Context.PROVIDER_URL, "ldap://192.168.10.101:389");
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
-		env.put(Context.SECURITY_PRINCIPAL, "uid=admin,ou=staff,dc=yggdrasil,dc=com");
-		env.put(Context.SECURITY_CREDENTIALS, "admin");
-		
-		try {
-			DirContext dc = null;
-			dc = new InitialDirContext(env);
-			
-			Attributes attrs = new BasicAttributes(true);
-			attrs.put(new BasicAttribute("uid", username));
-			attrs.put(new BasicAttribute("cn", username));
-			attrs.put(new BasicAttribute("street", "na"));
-			attrs.put(new BasicAttribute("sn", lastname));
-			attrs.put(new BasicAttribute("userpassword", password1));
-			attrs.put(new BasicAttribute("objectclass", "top"));
-			attrs.put(new BasicAttribute("objectclass", "person"));
-			attrs.put(new BasicAttribute("objectclass", "organizationalPerson"));
-			attrs.put(new BasicAttribute("objectclass", "inetorgperson"));
-			String dn = "uid=" + username + ",ou=user,dc=yggdrasil,dc=com";
-			InitialDirContext iniDirContext = (InitialDirContext)dc;
-			iniDirContext.bind(dn, dc, attrs);
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
+		if(!password1.equals(password2)) {
 			response.sendRedirect("failregister.jsp");
 		}
-		
-		response.sendRedirect("successregister.jsp");
+	
+		LdapUserRegister userEntity = new LdapUserRegister(username, password1);
+		userEntity.setFirstname(firstname);
+		userEntity.setLastname(lastname);
+		userEntity.setEmail(email);
+		if(userEntity.addEntity()) {
+			response.sendRedirect("successregister.jsp");
+		} else {
+			response.sendRedirect("failregister.jsp");
+		}
 	}
 
 }
