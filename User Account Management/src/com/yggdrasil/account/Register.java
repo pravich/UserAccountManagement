@@ -1,14 +1,6 @@
 package com.yggdrasil.account;
 
 import java.io.IOException;
-import java.util.Hashtable;
-
-import javax.naming.Context;
-import javax.naming.directory.Attributes;
-import javax.naming.directory.BasicAttribute;
-import javax.naming.directory.BasicAttributes;
-import javax.naming.directory.DirContext;
-import javax.naming.directory.InitialDirContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

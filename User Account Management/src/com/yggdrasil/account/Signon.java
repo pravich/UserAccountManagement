@@ -30,8 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(description = "Signon Servlet", urlPatterns = { "/Signon" })
 public class Signon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public Signon() {
@@ -98,16 +98,20 @@ public class Signon extends HttpServlet {
 				Attributes attributes = sr.getAttributes();
 				Attribute mail = attributes.get("mail");
 				System.out.println("user email = " + mail);
+				//logger.info("user email = " + mail);
 			}
 			
 		} catch(javax.naming.CommunicationException e) {
 			System.out.println(e.getMessage());
+			//logger.error(e.getMessage());
 			return(false);
 		} catch(javax.naming.AuthenticationException e) {
 			System.out.println(e.getMessage());
+			//logger.error(e.getMessage());
 			return(false);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
+			//logger.error(e.getMessage());
 			return(false);
 		}
 		
@@ -120,6 +124,7 @@ public class Signon extends HttpServlet {
 			sessionId = calculateRFC2104HMAC(new java.util.Date() + key, "DAAADF9CE77AF565D03753A2D2");
 		} catch (Exception e) {
 			System.out.println("generateSessionId() failed");
+			//logger.error("generateSessionId() failed");
 		}
 		return(sessionId);
 	}

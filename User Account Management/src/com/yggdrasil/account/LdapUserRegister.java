@@ -10,7 +10,6 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
 public class LdapUserRegister {
-
 	// LDAP Attributes
 	private String username; 		// uid, cn
 	private String password; 		// userpassword
@@ -190,6 +189,5 @@ public class LdapUserRegister {
 		}
 		
 		return(true);
-		
 	}
 }
