@@ -1,11 +1,15 @@
 package com.yggdrasil.account;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Servlet implementation class Register
@@ -14,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private static Logger logger = LogManager.getLogger(Register.class);
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,7 +33,6 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Register.doPost()");
 		String username  = request.getParameter("username");
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
@@ -35,14 +40,15 @@ public class Register extends HttpServlet {
 		String lastname  = request.getParameter("lastname");
 		String email     = request.getParameter("email");
 		
-		System.out.println("username=" + username);
-		System.out.println("password1=" + password1);
-		System.out.println("password2=" + password2);
-		System.out.println("firstname=" + firstname);
-		System.out.println("lastname=" + lastname);
-		System.out.println("email=" + email);
+		logger.debug("username=" + username);
+		logger.debug("password1=" + password1);
+		logger.debug("password2=" + password2);
+		logger.debug("firstname=" + firstname);
+		logger.debug("lastname=" + lastname);
+		logger.debug("email=" + email);
 		
 		if(!password1.equals(password2)) {
+			logger.debug("Confirmation password doesn't match");
 			response.sendRedirect("failregister.jsp");
 		}
 	
@@ -51,8 +57,10 @@ public class Register extends HttpServlet {
 		userEntity.setLastname(lastname);
 		userEntity.setEmail(email);
 		if(userEntity.addEntity()) {
+			logger.debug("Successfully register [" + username + "]");
 			response.sendRedirect("successregister.jsp");
 		} else {
+			logger.debug("Registration failed [" + username + "]");
 			response.sendRedirect("failregister.jsp");
 		}
 	}

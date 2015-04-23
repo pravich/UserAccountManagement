@@ -4,3 +4,19 @@
 2015-04-23 22:27:42.769|INFO|http-bio-8080-exec-6  |Signon:58| Invalid login [user02]
 2015-04-23 22:28:45.719|DEBUG|http-bio-8080-exec-2  |Signon:107| user's email = mail: user02@yahoo.com
 2015-04-23 22:28:45.771|INFO|http-bio-8080-exec-2  |Signon:72| login success. [user02]
+2015-04-24 01:05:04.342|DEBUG|http-bio-8080-exec-5  |Signon:108| user's email = null
+2015-04-24 01:05:04.411|INFO|http-bio-8080-exec-5  |Signon:72| login success. [user01]
+2015-04-24 01:05:53.030|DEBUG|http-bio-8080-exec-8  |Signon:108| user's email = null
+2015-04-24 01:05:53.032|INFO|http-bio-8080-exec-8  |Signon:72| login success. [user01]
+2015-04-24 01:13:31.037|ERROR|http-bio-8080-exec-6  |Signon:117| [LDAP: error code 49 - Invalid Credentials]
+2015-04-24 01:13:31.039|INFO|http-bio-8080-exec-6  |Signon:58| Invalid login [user02]
+2015-04-24 01:14:14.902|DEBUG|http-bio-8080-exec-9  |Signon:108| user01's email = null
+2015-04-24 01:14:14.985|INFO|http-bio-8080-exec-9  |Signon:72| login success. [user01]
+2015-04-24 01:15:02.259|DEBUG|http-bio-8080-exec-4  |Register:43| username=user02
+2015-04-24 01:15:02.259|DEBUG|http-bio-8080-exec-4  |Register:44| password1=user02
+2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:45| password2=user02
+2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:46| firstname=User02
+2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:47| lastname=user02
+2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:48| email=user02@email.com
+2015-04-24 01:16:17.371|ERROR|http-bio-8080-exec-4  |LdapUserRegister:150| 192.168.10.101:389
+2015-04-24 01:16:17.372|DEBUG|http-bio-8080-exec-4  |Register:63| Registration failed [user02]

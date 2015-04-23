@@ -3,13 +3,21 @@ package com.yggdrasil.account;
 import java.util.Hashtable;
 
 import javax.naming.Context;
+import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
+import javax.naming.directory.InvalidSearchControlsException;
+import javax.naming.directory.InvalidSearchFilterException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LdapUserRegister {
+	private static Logger logger = LogManager.getLogger(LdapUserRegister.class);
+	
 	// LDAP Attributes
 	private String username; 		// uid, cn
 	private String password; 		// userpassword
@@ -115,7 +123,8 @@ public class LdapUserRegister {
 	
 	// Should be loaded from configuration file
 	String initialContextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
-	String providerUrl = "ldap://192.168.10.101:389";
+	//String providerUrl = "ldap://192.168.10.101:389";
+	String providerUrl = "ldap://10.211.55.101:389";
 	String securityAuthentication = "simple";
 	String securityPrincipal = "uid=admin,ou=staff,dc=yggdrasil,dc=com";
 	String securityCredential = "admin";
@@ -133,8 +142,14 @@ public class LdapUserRegister {
 		
 		try {
 			dirctx = new InitialDirContext(env);
+		} catch(InvalidSearchControlsException e) {
+			logger.error(e.getMessage());
+		} catch(InvalidSearchFilterException e) {
+			logger.error(e.getMessage());
+		} catch(NamingException e) {
+			logger.error(e.getMessage());
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -184,7 +199,7 @@ public class LdapUserRegister {
 			
 			dirctx.bind(dn, dirctx, userattributes);
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return(false);
 		}
 		

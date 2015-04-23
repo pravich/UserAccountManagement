@@ -84,7 +84,8 @@ public class Signon extends HttpServlet {
 		
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-		env.put(Context.PROVIDER_URL, "ldap://192.168.10.101:389");
+		//env.put(Context.PROVIDER_URL, "ldap://192.168.10.101:389");
+		env.put(Context.PROVIDER_URL, "ldap://10.211.55.101:389");
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, "uid="+ username + ",ou=user,dc=yggdrasil,dc=com");
 		env.put(Context.SECURITY_CREDENTIALS, password);
@@ -104,7 +105,7 @@ public class Signon extends HttpServlet {
 				Attributes attributes = sr.getAttributes();
 				Attribute mail = attributes.get("mail");
 				//System.out.println("user email = " + mail);
-				logger.debug("user's email = " + mail);
+				logger.debug(username + "'s email = " + mail);
 			}
 			
 		} catch(javax.naming.CommunicationException e) {
