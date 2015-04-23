@@ -1,0 +1,6 @@
+2015-04-23 22:26:42.257|ERROR|http-bio-8080-exec-5  |Signon:112| 192.168.10.101:389
+2015-04-23 22:26:42.259|INFO|http-bio-8080-exec-5  |Signon:58| Invalid login [user02]
+2015-04-23 22:27:42.769|ERROR|http-bio-8080-exec-6  |Signon:112| 192.168.10.101:389
+2015-04-23 22:27:42.769|INFO|http-bio-8080-exec-6  |Signon:58| Invalid login [user02]
+2015-04-23 22:28:45.719|DEBUG|http-bio-8080-exec-2  |Signon:107| user's email = mail: user02@yahoo.com
+2015-04-23 22:28:45.771|INFO|http-bio-8080-exec-2  |Signon:72| login success. [user02]

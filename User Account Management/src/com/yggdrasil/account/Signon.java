@@ -24,6 +24,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Servlet implementation class Signon
  */
@@ -31,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Signon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private static Logger logger = LogManager.getLogger(Signon.class);
 	/**
      * @see HttpServlet#HttpServlet()
      */
@@ -51,6 +55,7 @@ public class Signon extends HttpServlet {
 		
 		if(!verify(username, password)) {
 			response.sendRedirect("invalidlogin.jsp");
+			logger.info("Invalid login [" + username + "]");
 		} else {
 			// set cookies
 			Cookie cookie = new Cookie("s", generateSessionId(request.getParameter("username")));
@@ -64,6 +69,7 @@ public class Signon extends HttpServlet {
 			response.addCookie(cookie);
 			
 			response.sendRedirect("successlogin.jsp");
+			logger.info("login success. [" + username + "]");
 		}
 	}
 	
@@ -97,21 +103,21 @@ public class Signon extends HttpServlet {
 				SearchResult sr = (SearchResult) results.next();
 				Attributes attributes = sr.getAttributes();
 				Attribute mail = attributes.get("mail");
-				System.out.println("user email = " + mail);
-				//logger.info("user email = " + mail);
+				//System.out.println("user email = " + mail);
+				logger.debug("user's email = " + mail);
 			}
 			
 		} catch(javax.naming.CommunicationException e) {
-			System.out.println(e.getMessage());
-			//logger.error(e.getMessage());
+			//System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return(false);
 		} catch(javax.naming.AuthenticationException e) {
-			System.out.println(e.getMessage());
-			//logger.error(e.getMessage());
+			//System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return(false);
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
-			//logger.error(e.getMessage());
+			//System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return(false);
 		}
 		
@@ -123,8 +129,8 @@ public class Signon extends HttpServlet {
 		try {
 			sessionId = calculateRFC2104HMAC(new java.util.Date() + key, "DAAADF9CE77AF565D03753A2D2");
 		} catch (Exception e) {
-			System.out.println("generateSessionId() failed");
-			//logger.error("generateSessionId() failed");
+			//System.out.println("generateSessionId() failed");
+			logger.error("generateSessionId() failed");
 		}
 		return(sessionId);
 	}
