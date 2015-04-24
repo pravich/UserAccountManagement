@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LdapUserRegister {
+	// Logger
 	private static Logger logger = LogManager.getLogger(LdapUserRegister.class);
 	
 	// LDAP Attributes
@@ -31,115 +32,27 @@ public class LdapUserRegister {
 	private String mobile; 			// mobile
 	private String description;		// description
 	
-	/// Getters and Setters
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getOrganization() {
-		return organization;
-	}
-
-	public void setOrganization(String organization) {
-		this.organization = organization;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 	DirContext dirctx = null;
 	
 	// Should be loaded from configuration file
-	String initialContextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
+	protected String initialContextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
 	//String providerUrl = "ldap://192.168.10.101:389";
-	String providerUrl = "ldap://10.211.55.101:389";
-	String securityAuthentication = "simple";
-	String securityPrincipal = "uid=admin,ou=staff,dc=yggdrasil,dc=com";
-	String securityCredential = "admin";
+	protected String providerUrl = "ldap://10.211.55.101:389";
+	protected String securityAuthentication = "simple";
+	protected String securityPrincipal = "uid=admin,ou=staff,dc=yggdrasil,dc=com";
+	protected String securityCredential = "admin";
 	
 	Hashtable<String, String> env = null;
 	
+	
+	/*** Constructor ***/
 	LdapUserRegister() {
 		env = new Hashtable<String, String>();
-		
-		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-		env.put(Context.PROVIDER_URL, "ldap://192.168.10.101:389");
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
-		env.put(Context.SECURITY_PRINCIPAL, "uid=admin,ou=staff,dc=yggdrasil,dc=com");
-		env.put(Context.SECURITY_CREDENTIALS, "admin");
-		
+		env.put(Context.INITIAL_CONTEXT_FACTORY, initialContextFactory);
+		env.put(Context.PROVIDER_URL, providerUrl);
+		env.put(Context.SECURITY_AUTHENTICATION, securityAuthentication);
+		env.put(Context.SECURITY_PRINCIPAL, securityPrincipal);
+		env.put(Context.SECURITY_CREDENTIALS, securityCredential);
 		try {
 			dirctx = new InitialDirContext(env);
 		} catch(InvalidSearchControlsException e) {
@@ -205,4 +118,92 @@ public class LdapUserRegister {
 		
 		return(true);
 	}
+	
+	// Getters and Setters
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+		
+		public String getEmail() {
+			return email;
+		}
+		
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		public String getFirstname() {
+			return firstname;
+		}
+
+		public void setFirstname(String firstname) {
+			this.firstname = firstname;
+		}
+
+		public String getLastname() {
+			return lastname;
+		}
+
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public String getZipcode() {
+			return zipcode;
+		}
+
+		public void setZipcode(String zipcode) {
+			this.zipcode = zipcode;
+		}
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
+		}
+
+		public String getOrganization() {
+			return organization;
+		}
+
+		public void setOrganization(String organization) {
+			this.organization = organization;
+		}
+
+		public String getMobile() {
+			return mobile;
+		}
+
+		public void setMobile(String mobile) {
+			this.mobile = mobile;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
 }
