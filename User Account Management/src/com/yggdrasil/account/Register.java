@@ -64,5 +64,4 @@ public class Register extends HttpServlet {
 			response.sendRedirect("failregister.jsp");
 		}
 	}
-
 }
