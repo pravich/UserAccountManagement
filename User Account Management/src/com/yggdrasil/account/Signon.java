@@ -35,6 +35,7 @@ public class Signon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = LogManager.getLogger(Signon.class);
+	
 	/**
      * @see HttpServlet#HttpServlet()
      */
@@ -84,9 +85,8 @@ public class Signon extends HttpServlet {
 		
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-		//env.put(Context.PROVIDER_URL, "ldap://192.168.10.101:389");
-		env.put(Context.PROVIDER_URL, "ldap://10.211.55.101:389");
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.PROVIDER_URL, Configuration.providerUrl);
+		env.put(Context.SECURITY_AUTHENTICATION, Configuration.securityAuthentication);
 		env.put(Context.SECURITY_PRINCIPAL, "uid="+ username + ",ou=user,dc=yggdrasil,dc=com");
 		env.put(Context.SECURITY_CREDENTIALS, password);
 		

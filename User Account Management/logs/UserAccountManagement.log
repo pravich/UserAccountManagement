@@ -1,37 +1,38 @@
-2015-04-23 22:26:42.257|ERROR|http-bio-8080-exec-5  |Signon:112| 192.168.10.101:389
-2015-04-23 22:26:42.259|INFO|http-bio-8080-exec-5  |Signon:58| Invalid login [user02]
-2015-04-23 22:27:42.769|ERROR|http-bio-8080-exec-6  |Signon:112| 192.168.10.101:389
-2015-04-23 22:27:42.769|INFO|http-bio-8080-exec-6  |Signon:58| Invalid login [user02]
-2015-04-23 22:28:45.719|DEBUG|http-bio-8080-exec-2  |Signon:107| user's email = mail: user02@yahoo.com
-2015-04-23 22:28:45.771|INFO|http-bio-8080-exec-2  |Signon:72| login success. [user02]
-2015-04-24 01:05:04.342|DEBUG|http-bio-8080-exec-5  |Signon:108| user's email = null
-2015-04-24 01:05:04.411|INFO|http-bio-8080-exec-5  |Signon:72| login success. [user01]
-2015-04-24 01:05:53.030|DEBUG|http-bio-8080-exec-8  |Signon:108| user's email = null
-2015-04-24 01:05:53.032|INFO|http-bio-8080-exec-8  |Signon:72| login success. [user01]
-2015-04-24 01:13:31.037|ERROR|http-bio-8080-exec-6  |Signon:117| [LDAP: error code 49 - Invalid Credentials]
-2015-04-24 01:13:31.039|INFO|http-bio-8080-exec-6  |Signon:58| Invalid login [user02]
-2015-04-24 01:14:14.902|DEBUG|http-bio-8080-exec-9  |Signon:108| user01's email = null
-2015-04-24 01:14:14.985|INFO|http-bio-8080-exec-9  |Signon:72| login success. [user01]
-2015-04-24 01:15:02.259|DEBUG|http-bio-8080-exec-4  |Register:43| username=user02
-2015-04-24 01:15:02.259|DEBUG|http-bio-8080-exec-4  |Register:44| password1=user02
-2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:45| password2=user02
-2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:46| firstname=User02
-2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:47| lastname=user02
-2015-04-24 01:15:02.260|DEBUG|http-bio-8080-exec-4  |Register:48| email=user02@email.com
-2015-04-24 01:16:17.371|ERROR|http-bio-8080-exec-4  |LdapUserRegister:150| 192.168.10.101:389
-2015-04-24 01:16:17.372|DEBUG|http-bio-8080-exec-4  |Register:63| Registration failed [user02]
-2015-04-24 10:28:31.815|DEBUG|http-bio-8080-exec-5  |Register:43| username=user02
-2015-04-24 10:28:31.818|DEBUG|http-bio-8080-exec-5  |Register:44| password1=user02
-2015-04-24 10:28:31.818|DEBUG|http-bio-8080-exec-5  |Register:45| password2=user02
-2015-04-24 10:28:31.818|DEBUG|http-bio-8080-exec-5  |Register:46| firstname=User02
-2015-04-24 10:28:31.818|DEBUG|http-bio-8080-exec-5  |Register:47| lastname=xxx
-2015-04-24 10:28:31.818|DEBUG|http-bio-8080-exec-5  |Register:48| email=user02@email.com
-2015-04-24 10:29:46.926|ERROR|http-bio-8080-exec-5  |LdapUserRegister:150| 192.168.10.101:389
-2015-04-24 10:29:46.927|DEBUG|http-bio-8080-exec-5  |Register:63| Registration failed [user02]
-2015-04-24 10:45:56.844|DEBUG|http-bio-8080-exec-5  |Register:43| username=user03
-2015-04-24 10:45:56.846|DEBUG|http-bio-8080-exec-5  |Register:44| password1=user03
-2015-04-24 10:45:56.847|DEBUG|http-bio-8080-exec-5  |Register:45| password2=user03
-2015-04-24 10:45:56.847|DEBUG|http-bio-8080-exec-5  |Register:46| firstname=User03
-2015-04-24 10:45:56.847|DEBUG|http-bio-8080-exec-5  |Register:47| lastname=xxx
-2015-04-24 10:45:56.847|DEBUG|http-bio-8080-exec-5  |Register:48| email=user03@email.com
-2015-04-24 10:45:56.876|DEBUG|http-bio-8080-exec-5  |Register:60| Successfully register [user03]
+2015-04-25 07:05:24.168|DEBUG|http-bio-8080-exec-6  |Signon:107| user01's email = null
+2015-04-25 07:05:24.225|INFO|http-bio-8080-exec-6  |Signon:72| login success. [user01]
+2015-04-25 07:05:37.480|ERROR|http-bio-8080-exec-7  |Signon:112| 192.168.10.101:389
+2015-04-25 07:05:37.480|INFO|http-bio-8080-exec-7  |Signon:58| Invalid login [user01]
+2015-04-25 07:06:20.205|DEBUG|http-bio-8080-exec-10 |Signon:107| user01's email = null
+2015-04-25 07:06:20.206|INFO|http-bio-8080-exec-10 |Signon:72| login success. [user01]
+2015-04-25 07:06:54.408|DEBUG|http-bio-8080-exec-5  |Register:43| username=user08
+2015-04-25 07:06:54.408|DEBUG|http-bio-8080-exec-5  |Register:44| password1=user08
+2015-04-25 07:06:54.409|DEBUG|http-bio-8080-exec-5  |Register:45| password2=user08
+2015-04-25 07:06:54.409|DEBUG|http-bio-8080-exec-5  |Register:46| firstname=User08
+2015-04-25 07:06:54.409|DEBUG|http-bio-8080-exec-5  |Register:47| lastname=xxx
+2015-04-25 07:06:54.409|DEBUG|http-bio-8080-exec-5  |Register:48| email=user08@yahoo.com
+2015-04-25 07:06:54.442|DEBUG|http-bio-8080-exec-5  |Register:60| Successfully register [user08]
+2015-04-25 07:09:43.681|-5DEBUG|http-bio-8080-exec-7 |Register:43| username=user09
+2015-04-25 07:09:43.682|-5DEBUG|http-bio-8080-exec-7 |Register:44| password1=user09
+2015-04-25 07:09:43.682|-5DEBUG|http-bio-8080-exec-7 |Register:45| password2=user09
+2015-04-25 07:09:43.682|-5DEBUG|http-bio-8080-exec-7 |Register:46| firstname=User08
+2015-04-25 07:09:43.682|-5DEBUG|http-bio-8080-exec-7 |Register:47| lastname=xxx
+2015-04-25 07:09:43.682|-5DEBUG|http-bio-8080-exec-7 |Register:48| email=user08@yahoo.com
+2015-04-25 07:09:43.698|-5DEBUG|http-bio-8080-exec-7 |Register:60| Successfully register [user09]
+2015-04-25 07:10:47.443|DEBUG|http-bio-8080-exec-9 |Register:43| username=user10
+2015-04-25 07:10:47.444|DEBUG|http-bio-8080-exec-9 |Register:44| password1=user10
+2015-04-25 07:10:47.444|DEBUG|http-bio-8080-exec-9 |Register:45| password2=user10
+2015-04-25 07:10:47.444|DEBUG|http-bio-8080-exec-9 |Register:46| firstname=User10
+2015-04-25 07:10:47.444|DEBUG|http-bio-8080-exec-9 |Register:47| lastname=xxx
+2015-04-25 07:10:47.444|DEBUG|http-bio-8080-exec-9 |Register:48| email=user10@yahoo.com
+2015-04-25 07:10:47.456|DEBUG|http-bio-8080-exec-9 |Register:60| Successfully register [user10]
+2015-04-25 07:11:38.301|DEBUG|http-bio-8080-exec-10|Signon:107| user10's email = mail: user10@yahoo.com
+2015-04-25 07:11:38.303|INFO |http-bio-8080-exec-10|Signon:72| login success. [user10]
+2015-04-25 11:26:25.532|DEBUG|http-bio-8080-exec-5 |Delete:37| username=user10
+2015-04-25 11:27:41.245|DEBUG|http-bio-8080-exec-7 |Delete:37| username=user10
+2015-04-25 11:27:41.279|INFO |http-bio-8080-exec-7 |LdapUserRegister:65| delete user=user10 successfully
+2015-04-25 11:28:12.685|DEBUG|http-bio-8080-exec-10|Delete:37| username=user09
+2015-04-25 11:28:12.690|INFO |http-bio-8080-exec-10|LdapUserRegister:65| delete user=user09 successfully
+2015-04-25 11:28:18.295|DEBUG|http-bio-8080-exec-10|Delete:37| username=user08
+2015-04-25 11:28:18.300|INFO |http-bio-8080-exec-10|LdapUserRegister:65| delete user=user08 successfully
+2015-04-25 11:28:23.263|DEBUG|http-bio-8080-exec-10|Delete:37| username=user07
+2015-04-25 11:28:23.267|INFO |http-bio-8080-exec-10|LdapUserRegister:65| delete user=user07 successfully

@@ -8,5 +8,9 @@
 </head>
 <body>
 Register Failed.
+<%
+out.println("<h1>hohoho</h1>");
+out.println("<h1>error code = " + request.getAttribute("errorCode") + "</h1>");
+%>
 </body>
 </html>

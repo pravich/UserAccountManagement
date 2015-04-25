@@ -33,26 +33,27 @@ public class LdapUserRegister {
 	private String description;		// description
 	
 	DirContext dirctx = null;
-	
-	// Should be loaded from configuration file
-	protected String initialContextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
-	//String providerUrl = "ldap://192.168.10.101:389";
-	protected String providerUrl = "ldap://10.211.55.101:389";
-	protected String securityAuthentication = "simple";
-	protected String securityPrincipal = "uid=admin,ou=staff,dc=yggdrasil,dc=com";
-	protected String securityCredential = "admin";
-	
+
 	Hashtable<String, String> env = null;
-	
 	
 	/*** Constructor ***/
 	LdapUserRegister() {
+		createDirContext();
+	}
+	
+	LdapUserRegister(String username, String password) {
+		this();
+		this.username = username;
+		this.password = password;
+	}
+	
+	private void createDirContext() {
 		env = new Hashtable<String, String>();
-		env.put(Context.INITIAL_CONTEXT_FACTORY, initialContextFactory);
-		env.put(Context.PROVIDER_URL, providerUrl);
-		env.put(Context.SECURITY_AUTHENTICATION, securityAuthentication);
-		env.put(Context.SECURITY_PRINCIPAL, securityPrincipal);
-		env.put(Context.SECURITY_CREDENTIALS, securityCredential);
+		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		env.put(Context.PROVIDER_URL, Configuration.providerUrl);
+		env.put(Context.SECURITY_AUTHENTICATION, Configuration.securityAuthentication);
+		env.put(Context.SECURITY_PRINCIPAL, Configuration.securityPrincipal);
+		env.put(Context.SECURITY_CREDENTIALS, Configuration.securityCredential);
 		try {
 			dirctx = new InitialDirContext(env);
 		} catch(InvalidSearchControlsException e) {
@@ -64,12 +65,6 @@ public class LdapUserRegister {
 		} catch(Exception e) {
 			logger.error(e.getMessage());
 		}
-	}
-	
-	LdapUserRegister(String username, String password) {
-		this();
-		this.username = username;
-		this.password = password;
 	}
 	
 	public boolean addEntity() {
@@ -120,90 +115,90 @@ public class LdapUserRegister {
 	}
 	
 	// Getters and Setters
-		public String getUsername() {
-			return username;
-		}
+	public String getUsername() {
+		return username;
+	}
 
-		public void setUsername(String username) {
-			this.username = username;
-		}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-		public String getPassword() {
-			return password;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
-		
-		public String getEmail() {
-			return email;
-		}
-		
-		public void setEmail(String email) {
-			this.email = email;
-		}
-		public String getFirstname() {
-			return firstname;
-		}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
 
-		public void setFirstname(String firstname) {
-			this.firstname = firstname;
-		}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-		public String getLastname() {
-			return lastname;
-		}
+	public String getLastname() {
+		return lastname;
+	}
 
-		public void setLastname(String lastname) {
-			this.lastname = lastname;
-		}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-		public String getAddress() {
-			return address;
-		}
+	public String getAddress() {
+		return address;
+	}
 
-		public void setAddress(String address) {
-			this.address = address;
-		}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-		public String getZipcode() {
-			return zipcode;
-		}
+	public String getZipcode() {
+		return zipcode;
+	}
 
-		public void setZipcode(String zipcode) {
-			this.zipcode = zipcode;
-		}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
 
-		public String getCountry() {
-			return country;
-		}
+	public String getCountry() {
+		return country;
+	}
 
-		public void setCountry(String country) {
-			this.country = country;
-		}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-		public String getOrganization() {
-			return organization;
-		}
+	public String getOrganization() {
+		return organization;
+	}
 
-		public void setOrganization(String organization) {
-			this.organization = organization;
-		}
+	public void setOrganization(String organization) {
+		this.organization = organization;
+	}
 
-		public String getMobile() {
-			return mobile;
-		}
+	public String getMobile() {
+		return mobile;
+	}
 
-		public void setMobile(String mobile) {
-			this.mobile = mobile;
-		}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
-		public String getDescription() {
-			return description;
-		}
+	public String getDescription() {
+		return description;
+	}
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

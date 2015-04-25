@@ -2,14 +2,15 @@
 <Configuration status="debug">
 	<Properties>
 <!-- 		<Property name="log-path">${sys:catalina.home}/logs</Property> -->
-		<Property name="log-path">/Users/Vich/Documents/Development Workspace/git/UserAccountManagement/User Account Management/logs</Property>
+<!-- 		<Property name="log-path">/Users/Vich/Documents/Development Workspace/git/UserAccountManagement/User Account Management/logs</Property> -->
+		<Property name="log-path">D:/Java/Development Workspace/git/UserAccountManagement/User Account Management/logs</Property>
 	</Properties>
 
 	<Appenders>
 		<RollingFile name="file-log" fileName="${log-path}/UserAccountManagement.log"
 			filePattern="${log-path}/UserAccountManagement-%d{yyyy-MM-dd}.log">
 			<PatternLayout>
-				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%level|%-22t|%c{1}:%L| %msg%n
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%-5level|%-21t|%c{1}:%L| %msg%n
 				</pattern>
 			</PatternLayout>
 			<Policies>
