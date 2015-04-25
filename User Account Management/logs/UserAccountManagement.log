@@ -36,3 +36,14 @@
 2015-04-25 11:28:18.300|INFO |http-bio-8080-exec-10|LdapUserRegister:65| delete user=user08 successfully
 2015-04-25 11:28:23.263|DEBUG|http-bio-8080-exec-10|Delete:37| username=user07
 2015-04-25 11:28:23.267|INFO |http-bio-8080-exec-10|LdapUserRegister:65| delete user=user07 successfully
+2015-04-25 13:58:28.871|ERROR|http-bio-8080-exec-6 |Register:33| Cannot find D:/Java/Development Workspace/git/UserAccountManagement/User Account Management/WebContent/WEB-INF/classes/config.properties
+2015-04-25 14:00:27.918|ERROR|http-bio-8080-exec-9 |Signon:113| 10.211.55.201:389
+2015-04-25 14:00:27.920|INFO |http-bio-8080-exec-9 |Signon:59| Invalid login [user01]
+2015-04-25 14:01:25.693|ERROR|http-bio-8080-exec-7 |Signon:113| 10.211.55.201:389
+2015-04-25 14:01:25.695|INFO |http-bio-8080-exec-7 |Signon:59| Invalid login [user01]
+2015-04-25 14:01:27.150|ERROR|http-bio-8080-exec-8 |Signon:113| 10.211.55.201:389
+2015-04-25 14:01:27.151|INFO |http-bio-8080-exec-8 |Signon:59| Invalid login [user01]
+2015-04-25 14:01:49.954|ERROR|http-bio-8080-exec-5 |Signon:113| 10.211.55.201:389
+2015-04-25 14:01:49.954|INFO |http-bio-8080-exec-5 |Signon:59| Invalid login [user01]
+2015-04-25 14:02:29.160|DEBUG|http-bio-8080-exec-3 |Signon:108| user01's email = null
+2015-04-25 14:02:29.251|INFO |http-bio-8080-exec-3 |Signon:73| login success. [user01]
