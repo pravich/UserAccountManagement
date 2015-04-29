@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modify Success</title>
+<title>Modify Failed</title>
 </head>
 <body>
-Modify Success.
+Modify Failed.
+<%
+out.println("<h1>hohoho</h1>");
+out.println("<h1>error code = " + request.getAttribute("errorCode") + "</h1>");
+%>
 </body>
 </html>

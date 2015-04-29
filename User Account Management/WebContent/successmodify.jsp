@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modify Success</title>
+<title>Register Success</title>
 </head>
 <body>
-Modify Success.
+Register Success.
 </body>
 </html>

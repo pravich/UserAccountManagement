@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User Registration</title>
+<title>User Modification</title>
 </head>
 <body>
-	<form id="form1" name="form1" method="post" action="Register">
+	<form id="form1" name="form1" method="post" action="Modify">
 		<table>
 			<tr>
 				<td width="143">User Name:</td>
@@ -13,11 +13,15 @@
 					id="username" /></td>
 			</tr>
 			<tr>
-				<td>Password:</td>
+				<td>Old Password:</td>
+				<td><input type="password" name="oldpassword" value="" /></td>
+			</tr>
+			<tr>
+				<td>New Password:</td>
 				<td><input type="password" name="password1" value="" /></td>
 			</tr>
 			<tr>
-				<td>Confirm Password:</td>
+				<td>Confirm New Password:</td>
 				<td><input type="password" name="password2" value="" /></td>
 			</tr>
 			<tr>

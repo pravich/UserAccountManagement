@@ -12,12 +12,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Configuration {
-	private static Logger logger = LogManager.getLogger(Register.class);
+	private static Logger logger = LogManager.getLogger(Configuration.class);
 	//private static String configFilename = "config.properties";
-//	private static String configFilename = 
-//			"D:/Java/Development Workspace/git/UserAccountManagement/User Account Management/WebContent/WEB-INF/classes/config.properties";
 	private static String configFilename = 
-	"/Users/Vich/Documents/Development Workspace/git/UserAccountManagement/User Account Management/WebContent/WEB-INF/classes/config.properties";
+			"D:/Java/Development Workspace/git/UserAccountManagement/User Account Management/WebContent/WEB-INF/classes/config.properties";
+//	private static String configFilename = 
+//	"/Users/Vich/Documents/Development Workspace/git/UserAccountManagement/User Account Management/WebContent/WEB-INF/classes/config.properties";
 
 	public static final String providerUrl;
 	public static final String securityAuthentication;

@@ -12,18 +12,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class Modify
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/Modify")
+public class Modify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private static Logger logger = LogManager.getLogger(Register.class);
 	
+	private static Logger logger = LogManager.getLogger(Modify.class);
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public Modify() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,6 +34,7 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username  = request.getParameter("username");
+		String oldpassword = request.getParameter("oldpassword");
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
 		String firstname = request.getParameter("firstname");
@@ -41,27 +42,28 @@ public class Register extends HttpServlet {
 		String email     = request.getParameter("email");
 		
 		logger.debug("username=" + username);
+		logger.debug("oldpassword" + oldpassword);
 		logger.debug("password1=" + password1);
 		logger.debug("password2=" + password2);
 		logger.debug("firstname=" + firstname);
 		logger.debug("lastname=" + lastname);
 		logger.debug("email=" + email);
 		
-		if(!password1.equals(password2)) {
-			logger.debug("Confirmation password doesn't match");
-			response.sendRedirect("failregister.jsp");
-		}
-	
-		LdapUserRegister userEntity = new LdapUserRegister(username, password1);
-		userEntity.setFirstname(firstname);
-		userEntity.setLastname(lastname);
-		userEntity.setEmail(email);
-		if(userEntity.addEntity()) {
-			logger.debug("Successfully register [" + username + "]");
-			response.sendRedirect("successregister.jsp");
+		LdapModifyUser userModify = new LdapModifyUser(username, oldpassword);
+		userModify.setFirstname(firstname);
+		userModify.setLastname(lastname);
+		userModify.setPassword(password1);
+		
+		if(!userModify.modifyEntity()) {
+			logger.error("Modify attribute failed");
+			response.sendRedirect("failmodify.jsp");
 		} else {
-			logger.debug("Registration failed [" + username + "]");
-			response.sendRedirect("failregister.jsp");
+			logger.info("Modify success");
+			response.sendRedirect("successmodify.jsp");
 		}
+		
+		
+
 	}
+
 }
