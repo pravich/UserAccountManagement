@@ -43,3 +43,36 @@
 2015-04-29 11:06:53.024|DEBUG|http-bio-8080-exec-3 |Modify:50| email=
 2015-04-29 11:06:59.512|DEBUG|http-bio-8080-exec-3 |LdapModifyUser:85| Success modify attributes [user06]
 2015-04-29 11:07:01.396|INFO |http-bio-8080-exec-3 |Modify:61| Modify success
+2015-04-29 20:00:42.363|DEBUG|http-bio-8080-exec-4 |Search:38| username=user02
+2015-04-29 20:00:42.385|DEBUG|http-bio-8080-exec-4 |LdapSearchUser:81| record found user02
+2015-04-29 20:00:42.385|DEBUG|http-bio-8080-exec-4 |LdapSearchUser:83| Success modify attributes [user02]
+2015-04-29 20:00:56.048|DEBUG|http-bio-8080-exec-6 |Search:38| username=user09
+2015-04-29 20:00:56.061|DEBUG|http-bio-8080-exec-6 |LdapSearchUser:83| Success modify attributes [user09]
+2015-04-29 20:01:01.568|DEBUG|http-bio-8080-exec-8 |Search:38| username=user10
+2015-04-29 20:01:01.572|DEBUG|http-bio-8080-exec-8 |LdapSearchUser:83| Success modify attributes [user10]
+2015-04-29 20:01:34.758|DEBUG|http-bio-8080-exec-1 |Search:38| username=user10
+2015-04-29 20:01:34.761|DEBUG|http-bio-8080-exec-1 |LdapSearchUser:83| Success modify attributes [user10]
+2015-04-29 20:01:37.067|DEBUG|http-bio-8080-exec-1 |Search:38| username=
+2015-04-29 20:01:37.071|DEBUG|http-bio-8080-exec-1 |LdapSearchUser:83| Success modify attributes []
+2015-04-29 20:01:50.085|DEBUG|http-bio-8080-exec-1 |Search:38| username=x
+2015-04-29 20:01:50.089|DEBUG|http-bio-8080-exec-1 |LdapSearchUser:83| Success modify attributes [x]
+2015-04-29 20:02:02.277|DEBUG|http-bio-8080-exec-1 |Search:38| username=x
+2015-04-29 20:02:02.281|DEBUG|http-bio-8080-exec-1 |LdapSearchUser:83| Success modify attributes [x]
+2015-04-29 20:02:23.264|DEBUG|http-bio-8080-exec-3 |Search:38| username=x
+2015-04-29 20:07:02.542|DEBUG|http-bio-8080-exec-3 |Search:38| username=user06
+2015-04-29 20:07:02.555|DEBUG|http-bio-8080-exec-3 |LdapSearchUser:83| record found user06
+2015-04-29 20:07:02.555|DEBUG|http-bio-8080-exec-3 |LdapSearchUser:86| Success modify attributes [user06]
+2015-04-29 20:07:08.869|DEBUG|http-bio-8080-exec-5 |Search:38| username=user089
+2015-04-29 20:07:08.873|DEBUG|http-bio-8080-exec-5 |LdapSearchUser:86| Success modify attributes [user089]
+2015-04-29 20:07:56.700|DEBUG|http-bio-8080-exec-5 |Search:38| username=user01
+2015-04-29 20:07:56.726|DEBUG|http-bio-8080-exec-5 |LdapSearchUser:86| Success modify attributes [user01]
+2015-04-29 20:08:01.159|DEBUG|http-bio-8080-exec-7 |Search:38| username=user02
+2015-04-29 20:08:01.166|DEBUG|http-bio-8080-exec-7 |LdapSearchUser:83| record found user02
+2015-04-29 20:08:01.166|DEBUG|http-bio-8080-exec-7 |LdapSearchUser:86| Success modify attributes [user02]
+2015-04-29 20:08:04.978|DEBUG|http-bio-8080-exec-9 |Search:38| username=user01
+2015-04-29 20:08:04.982|DEBUG|http-bio-8080-exec-9 |LdapSearchUser:86| Success modify attributes [user01]
+2015-04-29 20:08:18.899|DEBUG|http-bio-8080-exec-10|Search:38| username=user03
+2015-04-29 20:08:18.902|DEBUG|http-bio-8080-exec-10|LdapSearchUser:83| record found user03
+2015-04-29 20:08:18.902|DEBUG|http-bio-8080-exec-10|LdapSearchUser:86| Success modify attributes [user03]
+2015-04-29 20:08:23.935|DEBUG|http-bio-8080-exec-10|Search:38| username=user078
+2015-04-29 20:08:23.938|DEBUG|http-bio-8080-exec-10|LdapSearchUser:86| Success modify attributes [user078]
